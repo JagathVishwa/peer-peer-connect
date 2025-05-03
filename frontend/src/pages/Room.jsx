@@ -14,9 +14,9 @@ function Room() {
   useEffect(() => {
     const newPeer = new Peer(undefined, {
       host: '0.peerjs.com',
-      port: 443,
+      port: 80,  // Use HTTP instead of HTTPS
       path: '/'
-    }); // Using the default PeerJS public server
+    });
     setPeer(newPeer);
 
     newPeer.on('open', (id) => {
