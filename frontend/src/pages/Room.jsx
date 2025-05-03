@@ -12,7 +12,11 @@ function Room() {
   const [peer, setPeer] = useState(null);
 
   useEffect(() => {
-    const newPeer = new Peer(); // Using the default PeerJS public server
+    const newPeer = new Peer(undefined, {
+      host: '0.peerjs.com',
+      port: 443,
+      path: '/'
+    }); // Using the default PeerJS public server
     setPeer(newPeer);
 
     newPeer.on('open', (id) => {
