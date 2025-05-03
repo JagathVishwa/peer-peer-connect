@@ -11,22 +11,13 @@ function Room() {
   const remoteVideoRef = useRef(null);
   const [peer, setPeer] = useState(null);
 
-  // Set up PeerJS connection
   useEffect(() => {
-    // Get the PeerJS server URL from environment variables
-    const peerServerUrl = process.env.REACT_APP_PEERJS_SERVER_URL || 'https://peerjs.com';
-
-    const newPeer = new Peer(undefined, {
-      host: peerServerUrl, // Use the environment variable here
-      port: 443,
-      secure: true,
-    });
-
+    const newPeer = new Peer(); // Using the default PeerJS public server
     setPeer(newPeer);
 
     newPeer.on('open', (id) => {
       setPeerId(id);
-      setIsLoading(false); // Peer connection is ready
+      setIsLoading(false);
     });
 
     newPeer.on('call', async (incomingCall) => {
@@ -53,7 +44,6 @@ function Room() {
     };
   }, []);
 
-  // Start Call (calling friend by roomId)
   const handleStartCall = async () => {
     if (!peer || !roomId) return;
 
@@ -74,7 +64,6 @@ function Room() {
     }
   };
 
-  // End the call
   const handleEndCall = () => {
     if (peer) {
       peer.disconnect();

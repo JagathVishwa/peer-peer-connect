@@ -1,17 +1,14 @@
-// frontend/src/App.jsx
-import { Routes, Route } from 'react-router-dom';
-import Home from './pages/Home';
-import Room from './pages/Room';
-import './App.css';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Room from './pages/Room'; // Make sure the Room component is imported
 
 function App() {
   return (
-    <div className="app-container">
+    <Router>
       <Routes>
-        <Route path="/" element={<Home />} />
         <Route path="/room/:roomId" element={<Room />} />
+        {/* other routes */}
       </Routes>
-    </div>
+    </Router>
   );
 }
 
